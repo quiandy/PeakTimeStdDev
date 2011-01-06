@@ -614,7 +614,7 @@ class peakTimeStdDevFrame(wx.Frame):
         self.fileName = ''
         self.crossCorrDebug = None
 
-        self.statusBar.SetStatusText("Strain evaluation utility v0.41 beta, coded by Andrea Chiarini")
+        self.statusBar.SetStatusText("Strain evaluation utility v1.1 (12/2010), coded by Andrea Chiarini")
         self.button_print.Enable(False)
 
     def OnButton_openButton(self, event):
