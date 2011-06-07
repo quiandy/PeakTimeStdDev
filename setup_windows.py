@@ -7,7 +7,7 @@ class Target:
     def __init__(self, **kw):
         self.__dict__.update(kw)
         # for the versioninfo resources
-        self.version = "1.1"
+        self.version = "1.2"
         self.company_name = "ACe Design"
         self.copyright = "GPL"
         self.name = "PeakTime Standard Deviation Utility"
@@ -32,7 +32,7 @@ PeakTimeStdDev = Target(
     dest_base = "PeakTimeStdDev")
 
 setup(name='PeakTimeStdDev',
-	version="2.0",
+	version="1.2",
 	description="PeakTime Standard Deviation Utility",
 	py_modules = ['PeakTimeStdDev'],
 	license="GPL",

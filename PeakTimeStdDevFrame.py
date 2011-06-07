@@ -91,7 +91,7 @@ class peakTimeStdDevFrame(wx.Frame):
               name='peakTimeStdDevFrame', parent=prnt, pos=wx.Point(44, 111),
               size=wx.Size(1036, 598),
               style=wx.MINIMIZE_BOX|wx.CLOSE_BOX|wx.CAPTION|wx.SYSTEM_MENU|wx.CLIP_CHILDREN,
-              title='Calcolo Deviazione Standard Tempi di picco di STRAIN (v. 08/12/2010)')
+              title='Calcolo Deviazione Standard Tempi di picco di STRAIN v.1.2 (07/06/2011)')
         self.SetIcon(wx.Icon(u'img/heart.ico',wx.BITMAP_TYPE_ICO))
         self.SetClientSize(wx.Size(1028, 571))
         self.SetForegroundColour(wx.Colour(0, 230, 0))
@@ -506,27 +506,17 @@ class peakTimeStdDevFrame(wx.Frame):
               parent=self.panel_strain, pos=wx.Point(616, 5), size=wx.Size(411,
               46), style=0)
 
-        self.check_curveBlue = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVEBLUE,
-              label='Blue', name='check_curveBlue', parent=self.panel_strain,
-              pos=wx.Point(628, 26), size=wx.Size(46, 13), style=0)
-        self.check_curveBlue.SetForegroundColour(wx.Colour(0, 0, 255))
-        self.check_curveBlue.SetValue(False)
-        self.check_curveBlue.Bind(wx.EVT_CHECKBOX,
-              self.OnCheck_curveBlueCheckbox,
-              id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVEBLUE)
-
-        self.check_curveCyan = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVECYAN,
-              label='Cyan', name='check_curveCyan', parent=self.panel_strain,
-              pos=wx.Point(689, 27), size=wx.Size(46, 13), style=0)
-        self.check_curveCyan.SetForegroundColour(wx.Colour(0, 223, 223))
-        self.check_curveCyan.SetValue(False)
-        self.check_curveCyan.Bind(wx.EVT_CHECKBOX,
-              self.OnCheck_curveCyanCheckbox,
-              id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVECYAN)
+        self.check_colorRed = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_COLORRED,
+              label='Red', name='check_colorRed', parent=self.panel_strain,
+              pos=wx.Point(628, 27), size=wx.Size(46, 13), style=0)
+        self.check_colorRed.SetForegroundColour(wx.Colour(255, 0, 0))
+        self.check_colorRed.SetValue(False)
+        self.check_colorRed.Bind(wx.EVT_CHECKBOX, self.OnCheck_colorRedCheckbox,
+              id=wxID_PEAKTIMESTDDEVFRAMECHECK_COLORRED)
 
         self.check_curveYellow = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVEYELLOW,
               label='Yellow', name='check_curveYellow',
-              parent=self.panel_strain, pos=wx.Point(750, 27), size=wx.Size(49,
+              parent=self.panel_strain, pos=wx.Point(689, 27), size=wx.Size(49,
               13), style=0)
         self.check_curveYellow.SetForegroundColour(wx.Colour(255, 255, 0))
         self.check_curveYellow.SetValue(False)
@@ -534,17 +524,18 @@ class peakTimeStdDevFrame(wx.Frame):
               self.OnCheck_curveYellowCheckbox,
               id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVEYELLOW)
 
-        self.check_colorRed = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_COLORRED,
-              label='Red', name='check_colorRed', parent=self.panel_strain,
-              pos=wx.Point(821, 27), size=wx.Size(46, 13), style=0)
-        self.check_colorRed.SetForegroundColour(wx.Colour(255, 0, 0))
-        self.check_colorRed.SetValue(False)
-        self.check_colorRed.Bind(wx.EVT_CHECKBOX, self.OnCheck_colorRedCheckbox,
-              id=wxID_PEAKTIMESTDDEVFRAMECHECK_COLORRED)
+        self.check_curveCyan = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVECYAN,
+              label='Cyan', name='check_curveCyan', parent=self.panel_strain,
+              pos=wx.Point(750, 27), size=wx.Size(46, 13), style=0)
+        self.check_curveCyan.SetForegroundColour(wx.Colour(0, 223, 223))
+        self.check_curveCyan.SetValue(False)
+        self.check_curveCyan.Bind(wx.EVT_CHECKBOX,
+              self.OnCheck_curveCyanCheckbox,
+              id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVECYAN)
 
         self.check_colorGreen = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_COLORGREEN,
               label='Green', name='check_colorGreen', parent=self.panel_strain,
-              pos=wx.Point(884, 27), size=wx.Size(46, 13), style=0)
+              pos=wx.Point(821, 27), size=wx.Size(46, 13), style=0)
         self.check_colorGreen.SetForegroundColour(wx.Colour(0, 159, 0))
         self.check_colorGreen.SetValue(False)
         self.check_colorGreen.Bind(wx.EVT_CHECKBOX,
@@ -553,13 +544,22 @@ class peakTimeStdDevFrame(wx.Frame):
 
         self.check_colorMagenta = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_COLORMAGENTA,
               label='Magenta', name='check_colorMagenta',
-              parent=self.panel_strain, pos=wx.Point(950, 27), size=wx.Size(65,
+              parent=self.panel_strain, pos=wx.Point(884, 27), size=wx.Size(65,
               13), style=0)
         self.check_colorMagenta.SetForegroundColour(wx.Colour(255, 0, 255))
         self.check_colorMagenta.SetValue(False)
         self.check_colorMagenta.Bind(wx.EVT_CHECKBOX,
               self.OnCheck_colorMagentaCheckbox,
               id=wxID_PEAKTIMESTDDEVFRAMECHECK_COLORMAGENTA)
+
+        self.check_curveBlue = wx.CheckBox(id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVEBLUE,
+              label='Blue', name='check_curveBlue', parent=self.panel_strain,
+              pos=wx.Point(950, 26), size=wx.Size(46, 13), style=0)
+        self.check_curveBlue.SetForegroundColour(wx.Colour(0, 0, 255))
+        self.check_curveBlue.SetValue(False)
+        self.check_curveBlue.Bind(wx.EVT_CHECKBOX,
+              self.OnCheck_curveBlueCheckbox,
+              id=wxID_PEAKTIMESTDDEVFRAMECHECK_CURVEBLUE)
 
         self.modlabel_startTime = wx.StaticText(id=wxID_PEAKTIMESTDDEVFRAMEMODLABEL_STARTTIME,
               label='', name='modlabel_startTime', parent=self.panel_strain,
@@ -614,7 +614,7 @@ class peakTimeStdDevFrame(wx.Frame):
         self.fileName = ''
         self.crossCorrDebug = None
 
-        self.statusBar.SetStatusText("Strain evaluation utility v1.1 (12/2010), coded by Andrea Chiarini")
+        self.statusBar.SetStatusText("Strain evaluation utility v1.2 (06/2011), coded by Andrea Chiarini")
         self.button_print.Enable(False)
 
     def OnButton_openButton(self, event):
@@ -839,71 +839,71 @@ class peakTimeStdDevFrame(wx.Frame):
             self.peakFields[curveName] = {}
             self.curvesToLoad.append(curveName)
 
-        if(len(self.peakFields) > 0):
+        if 'RED' in self.peakFields:
             self.text_col1.Disable()
             self.text_val1.Disable()
             self.text_time1.Disable()
             self.text_normTime1.Disable()
             
-            self.peakFields[self.peakFields.keys()[0]]['NameField'] = self.text_col1
-            self.peakFields[self.peakFields.keys()[0]]['ValueField'] = self.text_val1
-            self.peakFields[self.peakFields.keys()[0]]['TimeField'] = self.text_time1
-            self.peakFields[self.peakFields.keys()[0]]['NormalizedTimeField'] = self.text_normTime1
+            self.peakFields['RED']['NameField'] = self.text_col1
+            self.peakFields['RED']['ValueField'] = self.text_val1
+            self.peakFields['RED']['TimeField'] = self.text_time1
+            self.peakFields['RED']['NormalizedTimeField'] = self.text_normTime1
 
-        if(len(self.peakFields) > 1):
+        if 'YELLOW' in self.peakFields:
             self.text_col2.Disable()
             self.text_val2.Disable()
             self.text_time2.Disable()
             self.text_normTime2.Disable()
             
-            self.peakFields[self.peakFields.keys()[1]]['NameField'] = self.text_col2
-            self.peakFields[self.peakFields.keys()[1]]['ValueField'] = self.text_val2
-            self.peakFields[self.peakFields.keys()[1]]['TimeField'] = self.text_time2
-            self.peakFields[self.peakFields.keys()[1]]['NormalizedTimeField'] = self.text_normTime2
+            self.peakFields['YELLOW']['NameField'] = self.text_col2
+            self.peakFields['YELLOW']['ValueField'] = self.text_val2
+            self.peakFields['YELLOW']['TimeField'] = self.text_time2
+            self.peakFields['YELLOW']['NormalizedTimeField'] = self.text_normTime2
             
-        if(len(self.peakFields) > 2):
+        if 'CYAN' in self.peakFields:
             self.text_col3.Disable()
             self.text_val3.Disable()
             self.text_time3.Disable()
             self.text_normTime3.Disable()
             
-            self.peakFields[self.peakFields.keys()[2]]['NameField'] = self.text_col3
-            self.peakFields[self.peakFields.keys()[2]]['ValueField'] = self.text_val3
-            self.peakFields[self.peakFields.keys()[2]]['TimeField'] = self.text_time3
-            self.peakFields[self.peakFields.keys()[2]]['NormalizedTimeField'] = self.text_normTime3
+            self.peakFields['CYAN']['NameField'] = self.text_col3
+            self.peakFields['CYAN']['ValueField'] = self.text_val3
+            self.peakFields['CYAN']['TimeField'] = self.text_time3
+            self.peakFields['CYAN']['NormalizedTimeField'] = self.text_normTime3
         
-        if(len(self.peakFields) > 3):
+        if 'GREEN' in self.peakFields:
             self.text_col4.Disable()
             self.text_val4.Disable()
             self.text_time4.Disable()
             self.text_normTime4.Disable()
             
-            self.peakFields[self.peakFields.keys()[3]]['NameField'] = self.text_col4
-            self.peakFields[self.peakFields.keys()[3]]['ValueField'] = self.text_val4
-            self.peakFields[self.peakFields.keys()[3]]['TimeField'] = self.text_time4
-            self.peakFields[self.peakFields.keys()[3]]['NormalizedTimeField'] = self.text_normTime4
+            self.peakFields['GREEN']['NameField'] = self.text_col4
+            self.peakFields['GREEN']['ValueField'] = self.text_val4
+            self.peakFields['GREEN']['TimeField'] = self.text_time4
+            self.peakFields['GREEN']['NormalizedTimeField'] = self.text_normTime4
             
-        if(len(self.peakFields) > 4):
+        if 'MAGENTA' in self.peakFields:
             self.text_col5.Disable()
             self.text_val5.Disable()
             self.text_time5.Disable()
             self.text_normTime5.Disable()
             
-            self.peakFields[self.peakFields.keys()[4]]['NameField'] = self.text_col5
-            self.peakFields[self.peakFields.keys()[4]]['ValueField'] = self.text_val5
-            self.peakFields[self.peakFields.keys()[4]]['TimeField'] = self.text_time5
-            self.peakFields[self.peakFields.keys()[4]]['NormalizedTimeField'] = self.text_normTime5
+            self.peakFields['MAGENTA']['NameField'] = self.text_col5
+            self.peakFields['MAGENTA']['ValueField'] = self.text_val5
+            self.peakFields['MAGENTA']['TimeField'] = self.text_time5
+            self.peakFields['MAGENTA']['NormalizedTimeField'] = self.text_normTime5
         
-        if(len(self.peakFields) > 5):
+        if 'BLUE' in self.peakFields:
             self.text_col6.Disable()
             self.text_val6.Disable()
             self.text_time6.Disable()
             self.text_normTime6.Disable()
             
-            self.peakFields[self.peakFields.keys()[5]]['NameField'] = self.text_col6
-            self.peakFields[self.peakFields.keys()[5]]['ValueField'] = self.text_val6
-            self.peakFields[self.peakFields.keys()[5]]['TimeField'] = self.text_time6
-            self.peakFields[self.peakFields.keys()[5]]['NormalizedTimeField'] = self.text_normTime6
+            self.peakFields['BLUE']['NameField'] = self.text_col6
+            self.peakFields['BLUE']['ValueField'] = self.text_val6
+            self.peakFields['BLUE']['TimeField'] = self.text_time6
+            self.peakFields['BLUE']['NormalizedTimeField'] = self.text_normTime6
 
         self.peakFields['GLOBAL'] = {}
         
@@ -975,7 +975,9 @@ class peakTimeStdDevFrame(wx.Frame):
         report += '<tr><td><b>Colonna</b></td><td><b>Valore</b></td><td><b>Tempo Ass.</b></td><td><b>Tempo Norm.</b></td></tr>'
 
         # Single curve data
-        for curveName in self.peakFields:
+        curves = sorted(self.peakFields, cmp=curveNameOrder)
+
+        for curveName in curves:
             if curveName != 'GLOBAL':
                 report += '<tr>'
                 report += '<td>' + self.peakFields[curveName]['NameField'].GetValue() + '</td>'

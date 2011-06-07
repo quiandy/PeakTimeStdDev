@@ -29,10 +29,14 @@ def extractRawDataFromFile( inputFile ):
     line = line.replace('\t\t','\t')
     columnNames = map( stripSpaces, line.split('\t'))
 
+    columnNamesToColumnNumberMapper = {}
+
     # Saving column name in data structure
-    for columnName in columnNames:
+    for i in range(1,len(columnNames)):
+        columnName = columnNames[i]
         if columnName != 'Time (s)' and columnName != 'GLOBAL' and columnName != 'ECG : ':
             rawCurves['Curves'][columnName] = []
+            columnNamesToColumnNumberMapper[i] = columnName
     
     # Checking if GLOBAL column is present
     if columnNames[7] == 'GLOBAL':
@@ -53,10 +57,10 @@ def extractRawDataFromFile( inputFile ):
 
         # Filling time sample column
         rawCurves['Time'].append( valueMatrixLine[0] )
-        
+
         # Filling curve samples
         for col in range (1,len(rawCurves['Curves'])+1):
-            rawCurves['Curves'][rawCurves['Curves'].keys()[col -1]].append( valueMatrixLine[col] )
+            rawCurves['Curves'][columnNamesToColumnNumberMapper[col]].append( valueMatrixLine[col] )
         
         # Filling GLOBAL curve
         if isRadialFile:
@@ -268,6 +272,20 @@ def calculateTUS(strippedCurves):
     
     f.close()
     return round( (sqrt(float(continuous_component) / float(continuous_component + first_harmonic)))**3, 6)
+
+def curveNameOrder(curve1, curve2):
+    defaultCurveOrder = {'RED':1, 'YELLOW':2, 'CYAN':3, 'GREEN':4, 'MAGENTA':5, 'BLUE':6}
+    
+    if curve1 in defaultCurveOrder and curve2 in defaultCurveOrder:
+        return defaultCurveOrder[curve1] - defaultCurveOrder[curve2]
+        
+    if curve1 in defaultCurveOrder and not curve2 in defaultCurveOrder:
+        return -1
+    
+    if not curve1 in defaultCurveOrder and curve2 in defaultCurveOrder:
+        return 1
+        
+    return curve1 < curve2
 
 def findCrossCorrelationAverage(strippedCurves):
     crossCorrValue = 0
